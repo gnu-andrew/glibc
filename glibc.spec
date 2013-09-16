@@ -1,6 +1,6 @@
 %define glibcsrcdir glibc-2.18
 %define glibcversion 2.18
-%define glibcrelease 6%{?dist}
+%define glibcrelease 7%{?dist}
 # Pre-release tarballs are pulled in from git using a command that is
 # effectively:
 #
@@ -184,6 +184,7 @@ Patch0042: %{name}-rh970865.patch
 # Patches from upstream
 #
 Patch1001: %{name}-rh995841.patch
+Patch1002: %{name}-rh1008299.patch
 
 #
 # Patches submitted, but not yet approved upstream.
@@ -543,6 +544,7 @@ package or when debugging this package.
 %patch0042 -p1
 %patch2029 -p1
 %patch2030 -p1
+%patch1002 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1628,6 +1630,9 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Mon Sep 16 2013 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-7
+- Fix integer overflows in *valloc and memalign (CVE-2013-4332, #1008299).
+
 * Thu Aug 29 2013 Carlos O'Donell <carlos@redhat.com> - 2.18-6
 - Fix Power build (#997531).
 
