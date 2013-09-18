@@ -1,6 +1,6 @@
 %define glibcsrcdir glibc-2.18
 %define glibcversion 2.18
-%define glibcrelease 7%{?dist}
+%define glibcrelease 8%{?dist}
 # Pre-release tarballs are pulled in from git using a command that is
 # effectively:
 #
@@ -280,8 +280,15 @@ Conflicts: kernel < %{enablekernel}
 BuildRequires: binutils >= 2.20.51.0.2
 Conflicts: binutils < 2.20.51.0.2
 %else
+%ifarch s390 s390x
+# Needed for STT_GNU_IFUNC support for s390/390x
+BuildRequires: binutils >= 2.23.52.0.1-8
+Conflicts: binutils < 2.23.52.0.1-8
+%else
+# Default to this version
 BuildRequires: binutils >= 2.19.51.0.10
 Conflicts: binutils < 2.19.51.0.10
+%endif
 %endif
 # Earlier releases have broken support for IRELATIVE relocations
 Conflicts: prelink < 0.4.2
@@ -1630,6 +1637,9 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Wed Sep 18 2013 Patsy Franklin <pfrankli@redhat.com> - 2.18-8
+- Fix conditional requiring specific binutils for s390/s390x.
+
 * Mon Sep 16 2013 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-7
 - Fix integer overflows in *valloc and memalign (CVE-2013-4332, #1008299).
 
