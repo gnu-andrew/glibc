@@ -1,6 +1,6 @@
 %define glibcsrcdir glibc-2.18
 %define glibcversion 2.18
-%define glibcrelease 8%{?dist}
+%define glibcrelease 9%{?dist}
 # Pre-release tarballs are pulled in from git using a command that is
 # effectively:
 #
@@ -221,6 +221,9 @@ Patch2029: %{name}-rh1000924.patch
 
 # Pass dl_hwcap to IFUNC resolver on 32-bit ARM.
 Patch2030: %{name}-rh985342.patch
+
+# Upstream BZ 15754
+Patch2031: %{name}-rh985625-CVE-2013-4788.patch
 
 ##############################################################################
 # End of glibc patches.
@@ -552,6 +555,7 @@ package or when debugging this package.
 %patch2029 -p1
 %patch2030 -p1
 %patch1002 -p1
+%patch2031 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1637,6 +1641,10 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Mon Sep 23 2013 Carlos O'Donell <carlos@redhat.com> - 2.18-9
+- Fix CVE-2013-4788: Static applications now support pointer mangling.
+  Existing static applications must be recompiled (#985625).
+
 * Wed Sep 18 2013 Patsy Franklin <pfrankli@redhat.com> - 2.18-8
 - Fix conditional requiring specific binutils for s390/s390x.
 
