@@ -1,6 +1,6 @@
 %define glibcsrcdir glibc-2.18
 %define glibcversion 2.18
-%define glibcrelease 9%{?dist}
+%define glibcrelease 10%{?dist}
 # Pre-release tarballs are pulled in from git using a command that is
 # effectively:
 #
@@ -224,6 +224,8 @@ Patch2030: %{name}-rh985342.patch
 
 # Upstream BZ 15754
 Patch2031: %{name}-rh985625-CVE-2013-4788.patch
+
+Patch2032: %{name}-rh1007590.patch
 
 ##############################################################################
 # End of glibc patches.
@@ -556,6 +558,7 @@ package or when debugging this package.
 %patch2030 -p1
 %patch1002 -p1
 %patch2031 -p1
+%patch2032 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1641,6 +1644,9 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Tue Oct  1 2013 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-10
+- Fix check for PI mutex on non-x86 systems (#1007590).
+
 * Mon Sep 23 2013 Carlos O'Donell <carlos@redhat.com> - 2.18-9
 - Fix CVE-2013-4788: Static applications now support pointer mangling.
   Existing static applications must be recompiled (#985625).
