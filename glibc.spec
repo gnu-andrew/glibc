@@ -1,6 +1,6 @@
 %define glibcsrcdir glibc-2.18
 %define glibcversion 2.18
-%define glibcrelease 11%{?dist}
+%define glibcrelease 12%{?dist}
 # Pre-release tarballs are pulled in from git using a command that is
 # effectively:
 #
@@ -189,6 +189,7 @@ Patch0043: %{name}-rh1009145.patch
 #
 Patch1001: %{name}-rh995841.patch
 Patch1002: %{name}-rh1008299.patch
+Patch1003: %{name}-rh1047979.patch
 
 #
 # Patches submitted, but not yet approved upstream.
@@ -564,6 +565,7 @@ package or when debugging this package.
 %patch2031 -p1
 %patch2032 -p1
 %patch0043 -p1
+%patch1003 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1649,6 +1651,10 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Thu Jan 23 2014 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-12
+- Use first name entry for address in /etc/hosts as the canonical name
+  in getaddrinfo (#1047979).
+
 * Wed Oct  2 2013 Carlos O'Donell <carlos@redhat.com> - 2.18-11
 - Allow ldconfig cached objects previously marked as hard or soft
   ABI to now become unmarked without raising an error. This works
