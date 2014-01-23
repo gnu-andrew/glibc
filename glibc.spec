@@ -190,6 +190,7 @@ Patch0043: %{name}-rh1009145.patch
 Patch1001: %{name}-rh995841.patch
 Patch1002: %{name}-rh1008299.patch
 Patch1003: %{name}-rh1047979.patch
+Patch1004: %{name}-rh1055613.patch
 
 #
 # Patches submitted, but not yet approved upstream.
@@ -566,6 +567,7 @@ package or when debugging this package.
 %patch2032 -p1
 %patch0043 -p1
 %patch1003 -p1
+%patch1004 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1654,6 +1656,7 @@ rm -f *.filelist*
 * Thu Jan 23 2014 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-12
 - Use first name entry for address in /etc/hosts as the canonical name
   in getaddrinfo (#1047979).
+- Fix parsing of 0e+0 as float (#1055613).
 
 * Wed Oct  2 2013 Carlos O'Donell <carlos@redhat.com> - 2.18-11
 - Allow ldconfig cached objects previously marked as hard or soft
