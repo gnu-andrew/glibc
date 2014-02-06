@@ -1,6 +1,6 @@
 %define glibcsrcdir glibc-2.18
 %define glibcversion 2.18
-%define glibcrelease 12%{?dist}
+%define glibcrelease 13%{?dist}
 # Pre-release tarballs are pulled in from git using a command that is
 # effectively:
 #
@@ -191,6 +191,7 @@ Patch1001: %{name}-rh995841.patch
 Patch1002: %{name}-rh1008299.patch
 Patch1003: %{name}-rh1047979.patch
 Patch1004: %{name}-rh1055613.patch
+Patch1005: %{name}-rh1019452.patch
 
 #
 # Patches submitted, but not yet approved upstream.
@@ -568,6 +569,7 @@ package or when debugging this package.
 %patch0043 -p1
 %patch1003 -p1
 %patch1004 -p1
+%patch1005 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1653,6 +1655,9 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Thu Feb  6 2014 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-13
+- Add pointer mangling support for ARM (#1019452).
+
 * Thu Jan 23 2014 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-12
 - Use first name entry for address in /etc/hosts as the canonical name
   in getaddrinfo (#1047979).
