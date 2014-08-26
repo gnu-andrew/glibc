@@ -195,7 +195,7 @@ Patch1003: %{name}-rh1047979.patch
 Patch1004: %{name}-rh1055613.patch
 Patch1005: %{name}-rh1019452.patch
 
-Patch1006: %(name}-rh1118581.patch
+Patch1006: %{name}-rh1118581.patch
 
 #
 # Patches submitted, but not yet approved upstream.
