@@ -1,6 +1,6 @@
 %define glibcsrcdir glibc-2.18
 %define glibcversion 2.18
-%define glibcrelease 14%{?dist}
+%define glibcrelease 15%{?dist}
 # Pre-release tarballs are pulled in from git using a command that is
 # effectively:
 #
@@ -196,6 +196,7 @@ Patch1004: %{name}-rh1055613.patch
 Patch1005: %{name}-rh1019452.patch
 
 Patch1006: %{name}-rh1118581.patch
+Patch1007: %{name}-rh1118581-2.patch
 
 #
 # Patches submitted, but not yet approved upstream.
@@ -576,6 +577,7 @@ package or when debugging this package.
 %patch1005 -p1
 %patch0044 -p1
 %patch1006 -p1
+%patch1007 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1661,6 +1663,9 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Tue Aug 26 2014 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-15
+- Fix failing tst-setlocale3 (#rh1118581).
+
 * Tue Aug 26 2014 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-14
 - Remove gconv transliteration loadable modules support (CVE-2014-5119,
   #1119128).
