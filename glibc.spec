@@ -197,6 +197,7 @@ Patch1005: %{name}-rh1019452.patch
 
 Patch1006: %{name}-rh1118581.patch
 Patch1007: %{name}-rh1118581-2.patch
+Patch1008: %{name}-rh1104400.patch
 
 #
 # Patches submitted, but not yet approved upstream.
@@ -578,6 +579,7 @@ package or when debugging this package.
 %patch0044 -p1
 %patch1006 -p1
 %patch1007 -p1
+%patch1008 -p1
 
 ##############################################################################
 # %%prep - Additional prep required...
@@ -1667,6 +1669,9 @@ rm -f *.filelist*
 %endif
 
 %changelog
+* Wed Oct  1 2014 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.18-17
+- Fix lll_unlock twice in pthread_cond_broadcast (#1104400).
+
 * Fri Sep 26 2014 Carlos O'Donell <carlos@redhat.com> - 2.18-16
 - Disable lock elision support for Intel hardware until microcode
   updates can be done in early bootup (#1146967).
